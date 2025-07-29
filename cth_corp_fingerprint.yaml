@@ -1,0 +1,50 @@
+organization:
+  domain_name: mycorp.com
+  registered_organization: "My Corp Inc."
+  registered_owner: "IT Department"
+  oem:
+    manufacturer: "My Corp Internal IT"
+    support_url: "https://intranet.mycorp.com/support"
+  root_ca_fingerprint: "A1B2C3D4E5F67890123456789ABCDEF123456789"  # SHA1 thumbprint
+
+network:
+  ad_domain: corp.mycorp.com
+  dns_suffixes:
+    - corp.mycorp.com
+    - mycorp.internal
+  proxy:
+    enabled: true
+    server: proxy.corp.mycorp.com:8080
+    autoconfig_url: http://wpad.mycorp.com/wpad.dat
+
+system:
+  hostname_prefix: MYC-                # Computer name starts with this
+  installed_software_keywords:
+    - "MyCorp Sync Tool"
+    - "MyCorp Endpoint Agent"
+  custom_registry_keys:
+    - path: "HKLM\\SOFTWARE\\MyCorp\\Config"
+      values:
+        department: "Finance"
+        region: "US-WEST"
+  gpo_keys:
+    - "HKLM\\SOFTWARE\\Policies\\MyCorp\\PolicyAgent"
+  printers:
+    - "\\mycorp-print01\\Floor1Printer"
+    - "\\mycorp-print02\\ExecSuite"
+
+user:
+  domain_user_group: "MYCORP\\Domain Admins"
+  usernames_keywords:
+    - mycorpadmin
+    - jsmith.it
+  sid_prefix: "S-1-5-21-987654321"  # Org-specific domain SID base
+
+environment:
+  env_vars:
+    CORP_REGION: "US-WEST"
+    CORP_ROLE: "Endpoint"
+  scheduled_tasks:
+    - "MyCorp Daily Sync"
+    - "CorpBackupMonitor"
+
